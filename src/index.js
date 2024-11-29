@@ -1,5 +1,6 @@
 // Import app.js
 import app from "./app.js";
+import { applyAssociations } from "./database/associations.js";
 // Import sequelize
 import { sequelize } from "./database/database.js";
 // Import relations
@@ -10,6 +11,7 @@ async function main() {
     await sequelize
       .sync({ force: true, alter: true })
       .then(() => {
+        applyAssociations();
         console.log("All models were synchronized successfully.");
       })
       .catch((error) => {
